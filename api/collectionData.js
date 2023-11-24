@@ -1,9 +1,10 @@
 import { clientCredentials } from '../utils/client';
 
-const endpoint = clientCredentials.databaseURL;
+const endpoint = 'https://mtg-collection-tracker-default-rtdb.firebaseio.com/';
 
 const getCollections = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/collection.json?orderBy="uid"&equalTo="${uid}"`, {
+  console.warn(endpoint, 'endpoint');
+  fetch(`${endpoint}/collections.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -15,7 +16,7 @@ const getCollections = (uid) => new Promise((resolve, reject) => {
 });
 
 const deleteCollection = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/collection/${firebaseKey}.json`, {
+  fetch(`${endpoint}/collections/${firebaseKey}.json`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -27,7 +28,7 @@ const deleteCollection = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const getSingleCollection = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/collection/${firebaseKey}.json`, {
+  fetch(`${endpoint}/collections/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -39,7 +40,7 @@ const getSingleCollection = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const createCollection = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/collection.json`, {
+  fetch(`${endpoint}/collections.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -52,7 +53,7 @@ const createCollection = (payload) => new Promise((resolve, reject) => {
 });
 
 const updateCollection = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/collection/${payload.firebaseKey}.json`, {
+  fetch(`${endpoint}/collections/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
