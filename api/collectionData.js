@@ -1,5 +1,3 @@
-import { clientCredentials } from '../utils/client';
-
 const endpoint = 'https://mtg-collection-tracker-default-rtdb.firebaseio.com/';
 
 const getCollections = (uid) => new Promise((resolve, reject) => {
