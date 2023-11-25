@@ -7,7 +7,7 @@ export default function AddCard() {
   return (
     <>
       <h1>{firebaseKey}</h1>
-        {/* database.map((card) => {
+      {/* database.map((card) => {
             return <Card collectionId={firebaseKey} card={card} />
         }) */}
     </>
