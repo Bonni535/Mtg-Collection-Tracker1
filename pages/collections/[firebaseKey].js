@@ -2,11 +2,16 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { getSingleCollection } from '../../api/collectionData';
+import { Button } from 'react-bootstrap';
 
 export default function ViewCollection() {
   const [collectionDetails, setCollectionDetails] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
+
+  const handleClick = () => {
+    router.push(`addcard/${firebaseKey}`)
+  }
 
   useEffect(() => {
     getSingleCollection(firebaseKey).then(setCollectionDetails);
@@ -21,6 +26,7 @@ export default function ViewCollection() {
       Description:
       <p>{collectionDetails?.description || ''}</p>
       <hr />
+      <Button onClick={handleClick}>Add a Card</Button>
     </div>
   );
 }
