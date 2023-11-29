@@ -1,6 +1,6 @@
-import { clientCredentials } from '../utils/client';
+// import { clientCredentials } from '../utils/client';
 
-const endpoint = clientCredentials.databaseURL;
+const endpoint = 'https://mtg-collection-tracker-default-rtdb.firebaseio.com/';
 
 const getAllCardsFromDatabase = () => new Promise((resolve, reject) => {
   fetch('https://api.magicthegathering.io/v1/cards', {
@@ -12,7 +12,7 @@ const getAllCardsFromDatabase = () => new Promise((resolve, reject) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        resolve(Object.values(data));
+        resolve(Object.values(data.cards));
       } else {
         resolve([]);
       }
@@ -33,14 +33,14 @@ const getSingleCardFromDatabase = (firebaseKey) => new Promise((resolve, reject)
 });
 
 const getCardsFromCollection = (collectionId) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/cards.json?orderBy="collectionId"&equalTo="${collectionId},`, {
+  fetch(`${endpoint}/cards.json?orderBy="collectionId"&equalTo="${collectionId}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((data) => resolve(Object.values(data)))
     .catch(reject);
 });
 
