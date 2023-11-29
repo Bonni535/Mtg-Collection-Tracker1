@@ -9,13 +9,12 @@ export default function AddCard() {
   const [databaseCards, setDatabaseCards] = useState([]);
 
   useEffect(() => {
-    getAllCardsFromDatabase(firebaseKey).then(setDatabaseCards);
+    getAllCardsFromDatabase().then(setDatabaseCards);
   }, []);
 
   return (
     <>
-      <h1>{firebaseKey}</h1>
-      {databaseCards && databaseCards.map((card) => <CardCard isDatabaseCard collectionId={firebaseKey} cardObj={card} />)}
+      {databaseCards.map((card) => <CardCard collectionId={firebaseKey} cardObj={card} />)}
     </>
   );
 }

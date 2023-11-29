@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Button, CardCard } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import CardCard from '../../components/cards/cardCard';
 import { getSingleCollection } from '../../api/collectionData';
 import { getCardsFromCollection } from '../../api/cardData';
 
@@ -13,6 +14,10 @@ export default function ViewCollection() {
 
   const handleClick = () => {
     router.push(`addcard/${firebaseKey}`);
+  };
+
+  const onUpdate = () => {
+    getCardsFromCollection(firebaseKey).then(setCollectionCards);
   };
 
   useEffect(() => {
@@ -31,7 +36,7 @@ export default function ViewCollection() {
       </div>
       Description:
       <p>{collectionDetails?.description || ''}</p>
-      {collectionCards.map((card) => <CardCard isDatabaseCard={false} collectionId={firebaseKey} cardObj={card} />)}
+      {collectionCards?.map((card) => <CardCard onUpdate={onUpdate} isDatabaseCard={false} collectionId={firebaseKey} cardObj={card} />)}
       <hr />
       <Button onClick={handleClick}>Add a Card</Button>
     </div>

@@ -6,7 +6,7 @@ import { addCardToCollection, deleteCardFromCollection, updateCard } from '../..
 import { useAuth } from '../../utils/context/authContext';
 
 function CardCard({
-  cardObj, onUpdate, isDatabaseCard, collectionId,
+  cardObj, onUpdate, collectionId,
 }) {
   const deleteThisCard = () => {
     if (window.confirm(`Delete ${cardObj.name}?`)) {
@@ -16,19 +16,22 @@ function CardCard({
 
   const { user } = useAuth();
   const router = useRouter();
+  const { firebaseKey } = router.query;
 
-  const handleAdd = (e) => {
-    e.preventDefault();
-    if (cardObj.firebaseKey) {
-      const payload = { ...cardObj, collectionId, uid: user.id };
+  const handleAdd = () => {
+    // e.preventDefault();
+    if (!cardObj.firebaseKey) {
+      const payload = { ...cardObj, collectionId, uid: user.uid };
       addCardToCollection(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCard(patchPayload).then(() => {
-          router.push('/');
+          router.push(`/collections/${firebaseKey}`);
         });
       });
     }
   };
+
+  // console.warn('hi', cardObj);
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
@@ -36,7 +39,8 @@ function CardCard({
       <Card.Body>
         <Card.Title>{cardObj.name}</Card.Title>
         <Card.Text>{cardObj.text}</Card.Text>
-        {isDatabaseCard ? <Button onClick={deleteThisCard}> Remove from the collection </Button> : <Button onClick={handleAdd}> Add Card to Collection</Button>}
+        <Button onClick={handleAdd}> Add Card to Collection</Button>
+        <Button onClick={deleteThisCard}> Remove Card</Button>
       </Card.Body>
     </Card>
   );
@@ -50,7 +54,6 @@ CardCard.propTypes = {
     firebaseKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
-  isDatabaseCard: PropTypes.bool.isRequired, // Prop type validation for isDatabaseCard
   collectionId: PropTypes.string.isRequired, // Prop type validation for collectionId
 };
 
