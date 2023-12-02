@@ -43,13 +43,13 @@ function CollectionForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault(); // this prevents the default behavior of form submission, allowing to handle the submission manually.
     if (obj.firebaseKey) {
-      updateCollection(formInput).then(() => router.push('/'));
+      updateCollection(formInput).then(() => router.push('/collection'));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createCollection(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateCollection(patchPayload).then(() => {
-          router.push('/');
+          router.push('/collection');
         });
       });
     }
