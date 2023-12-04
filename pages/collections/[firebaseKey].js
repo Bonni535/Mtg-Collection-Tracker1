@@ -32,10 +32,10 @@ export default function ViewCollection() {
     <div className="mt-5 d-flex flex-wrap">
       <div className="d-flex flex-column">
         {collectionDetails?.image
-          ? <Image src={collectionDetails.image} alt={collectionDetails.name} style={{ width: '300px' }} /> : ''}
+          ? <Image src={collectionDetails.image} alt={collectionDetails.name} width="300px" height="600px" /> : ''}
       </div>
-      Description:
-      <p>{collectionDetails?.description || ''}</p>
+      <p className="description">Description: </p>
+      <p className="description">{collectionDetails?.description || ''}</p>
       {collectionCards?.map((card) => <CardCard onUpdate={onUpdate} isDatabaseCard={false} collectionId={firebaseKey} cardObj={card} />)}
       <hr />
       <Button onClick={handleClick}>Add a Card</Button>
