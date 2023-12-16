@@ -14,7 +14,9 @@ export default function AddCard() {
 
   return (
     <>
-      {databaseCards.map((card) => <CardCard collectionId={firebaseKey} cardObj={card} />)}
+      <div className="d-flex flex-wrap">
+        {databaseCards.map((card) => <CardCard collectionId={firebaseKey} cardObj={card} />)}
+      </div>
     </>
   );
 }

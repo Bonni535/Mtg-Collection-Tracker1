@@ -24,3 +24,11 @@ body {
 .description {
   color: aliceblue;
 }
+
+.logo {
+  color: blue;
+}
+
+.card {
+  flex-wrap: wrap;
+}

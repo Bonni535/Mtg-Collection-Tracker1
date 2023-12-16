@@ -12,16 +12,16 @@ function CollectionCard({ collectionObj, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={collectionObj.image} alt={collectionObj.name} style={{ height: '200px' }} />
+    <Card border="success" style={{ width: '18rem', margin: '50px' }}>
+      <Card.Img variant="top" src={collectionObj.image} alt={collectionObj.name} style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>{collectionObj.name}</Card.Title>
+        <Card.Title><b>{collectionObj.name}</b></Card.Title>
         <Card.Text>{collectionObj.description}</Card.Text>
         <Link href={`/collections/${collectionObj.firebaseKey}`} passHref>
           <Button variant="primary" className="m-2">View Collection</Button>
         </Link>
         <Link href={`/collections/edit/${collectionObj.firebaseKey}`} passHref>
-          <Button variant="info">Edit the Collection</Button>
+          <Button variant="outline-success">Edit the Collection</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisCollection} className="m-2">
           Delete

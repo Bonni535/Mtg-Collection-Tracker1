@@ -38,7 +38,7 @@ function CardCard({
   // console.warn('hi', cardObj);
 
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
+    <Card className="card" style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={cardObj.imageUrl} alt={cardObj.name} style={{ height: '200px' }} />
       <Card.Body>
         <Card.Text>Color {cardObj.colors?.map((color) => color)}</Card.Text>
