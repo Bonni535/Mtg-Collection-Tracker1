@@ -23,12 +23,12 @@ function CollectionForm({ obj }) {
   const router = useRouter();
   const { user } = useAuth();
 
-  // The useEffect listens fot changes in obj and user and updated the form state accordingly.
+  // The useEffect listens for changes in obj and user and updated the form state accordingly.
   useEffect(() => {
     if (obj?.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
-  // The handleChange function modifies the state by updating the corrisponding field based on user input in the form.
+  // The handleChange function modifies the state by updating the corresponding field based on user input in the form.
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -37,7 +37,7 @@ function CollectionForm({ obj }) {
     }));
   };
 
-  // The handleSubmit function handles form submission differently based on wheter the obj contains a firebaseKey.
+  // The handleSubmit function handles form submission differently based on wheter the obj contains a firebaseKey or not.
   // it either updates an existing collection (updateCollection) or creates a new one (createCollection) (if a firebaseKey is found the form updates the relative collection, if not the form creates a new collection).
   // router.push is used to navigate the user to the home route after updating or creating a collection.
   const handleSubmit = (e) => {
