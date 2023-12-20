@@ -24,6 +24,16 @@ export default function NavBarAuth() {
                 <b>Your Collections!</b>
               </Nav.Link>
             </Link>
+            {/* <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+
+              />
+              <Button variant="outline-success">Search</Button>
+            </Form> */}
             <Button variant="primary" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>

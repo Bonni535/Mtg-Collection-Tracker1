@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { Button } from 'react-bootstrap';
 import CardCard from '../../components/cards/cardCard';
 import { getSingleCollection } from '../../api/collectionData';
@@ -29,16 +28,19 @@ export default function ViewCollection() {
   }, [firebaseKey]);
 
   return (
-    <div className="mt-5 d-flex flex-wrap">
+    <div className="collection-page mt-5 d-flex flex-wrap">
       <div className="d-flex flex-column">
         {collectionDetails?.image
-          ? <Image src={collectionDetails.image} alt={collectionDetails.name} width="300px" height="600px" /> : ''}
+          ? <img src={collectionDetails.image} alt={collectionDetails.name} width="300px" height="600px" /> : ''}
       </div>
-      <p className="description">Description: </p>
-      <p className="description">{collectionDetails?.description || ''}</p>
-      {collectionCards?.map((card) => <CardCard onUpdate={onUpdate} isDatabaseCard={false} collectionId={firebaseKey} cardObj={card} />)}
-      <hr />
-      <Button onClick={handleClick}>Add a Card</Button>
+      <div className="collection-description">
+        <p className="description-title"> <b>Description:</b></p>
+        <p className="description-text"><b>{collectionDetails?.description || ''}</b></p>
+      </div>
+      <div className="collection-cards">
+        {collectionCards?.map((card) => <CardCard onUpdate={onUpdate} isDatabaseCard={false} collectionId={firebaseKey} cardObj={card} />)}
+      </div>
+      <Button className="add-card-btn" onClick={handleClick}>Add a Card</Button>
     </div>
   );
 }

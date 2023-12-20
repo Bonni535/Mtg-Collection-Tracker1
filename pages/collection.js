@@ -34,9 +34,15 @@ function ShowCollections() {
       <Link href="/collections/new" passHref>
         <Button>Create A New Collection</Button>
       </Link>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>Search</Form.Label>
-        <Form.Control as="textarea" rows={1} onChange={handleSearch} />
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" style={{ width: '25%' }}>
+        {/* <Form.Label>S</Form.Label> */}
+        <Form.Control
+          type="search"
+          placeholder="Search by Collection Name"
+          className="me-2"
+          aria-label="Search"
+          onChange={handleSearch}
+        />
       </Form.Group>
       <div className="d-flex flex-wrap">
         {/* TODO: map over collections here using CollectionCard component */}
