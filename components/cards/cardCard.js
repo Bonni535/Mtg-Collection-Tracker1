@@ -24,7 +24,7 @@ function CardCard({
     // e.preventDefault();
     if (!cardObj.firebaseKey) {
       const payload = {
-        name: cardObj.name, text: cardObj.text, power: cardObj.power, toughness: cardObj.toughness, colors: cardObj.colors, manaCost: cardObj.manaCost, collectionId, uid: user.uid,
+        name: cardObj.name, imageUrl: cardObj.imageUrl, text: cardObj.text, power: cardObj.power, toughness: cardObj.toughness, colors: cardObj.colors, manaCost: cardObj.manaCost, collectionId, uid: user.uid,
       };
       addCardToCollection(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
@@ -39,7 +39,7 @@ function CardCard({
 
   return (
     <Card className="card" style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={cardObj.imageUrl} alt={cardObj.name} style={{ height: '200px' }} />
+      <Card.Img variant="top" src={cardObj.imageUrl} alt={cardObj.name} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Text>Color {cardObj.colors?.map((color) => color)}</Card.Text>
         <Card.Text>Mana Cost {cardObj.manaCost}</Card.Text>

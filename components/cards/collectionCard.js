@@ -12,7 +12,7 @@ function CollectionCard({ collectionObj, onUpdate }) {
   };
 
   return (
-    <Card border="success" style={{ width: '18rem', margin: '50px' }}>
+    <Card className="collection" style={{ width: '18rem', margin: '50px', backgroundColor: 'white' }}>
       <Card.Img variant="top" src={collectionObj.image} alt={collectionObj.name} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title><b>{collectionObj.name}</b></Card.Title>
